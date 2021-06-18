@@ -28,7 +28,7 @@ export default class Personal extends Component {
   };
 
   toggleShowForm = () => {
-    const showForm = this.state;
+    const { showForm } = this.state;
     this.setState({ showForm: !showForm });
   };
   render() {
