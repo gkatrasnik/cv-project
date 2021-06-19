@@ -49,7 +49,9 @@ export default class PersonalForm extends Component {
             placeholder="Enter your email"
           ></Form.Control>
         </Form.Group>
-        <Button type="submit">Submit</Button>
+        <Button type="submit" className="float-right">
+          Submit
+        </Button>
       </Form>
     );
   }
