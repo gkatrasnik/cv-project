@@ -29,7 +29,9 @@ export default class EducationView extends Component {
               Edit
             </Button>
             <Button
-              onClick={deleteEducationView(itemIndex)}
+              onClick={function () {
+                deleteEducationView(itemIndex);
+              }}
               type="submit"
               className="float-right"
             >

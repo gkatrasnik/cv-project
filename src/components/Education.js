@@ -31,8 +31,9 @@ export default class Education extends Component {
     this.setState({ showForm: !showForm });
   };
   render() {
+    console.log(this.state);
     const { showForm, schoolName, titleOfStudy, dateOfStudy } = this.state;
-    const { key, deleteEducation } = this.props;
+    const { index, deleteEducation } = this.props;
 
     return showForm ? (
       <EducationForm
@@ -49,7 +50,7 @@ export default class Education extends Component {
         dateOfStudy={dateOfStudy}
         toggleShowForm={this.toggleShowForm}
         deleteEducationView={deleteEducation}
-        itemIndex={key}
+        itemIndex={index}
       />
     );
   }

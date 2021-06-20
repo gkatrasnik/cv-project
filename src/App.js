@@ -31,12 +31,17 @@ class App extends Component {
     this.setState({
       numberOfEducation: i + 1,
     });
-    console.log(this.state.numberOfEducation);
   };
 
-  //Make tis work, passing i t ograndhildrem trough props, doesnt work
-  deleteEducation = (item) => {
-    console.log(item);
+  //it gets right index, but filter doesnt work. educationList is empty. on submit form make object, pass it to education component and add to education list in app
+
+  deleteEducation = (i) => {
+    this.setState((state) => {
+      const educationList = state.educationList.filter((task, j) => i !== j);
+      return {
+        educationList,
+      };
+    });
   };
 
   addExpirience = (item) => {
@@ -51,7 +56,7 @@ class App extends Component {
       educationList.push(
         <Card key={i}>
           <Card.Body>
-            <Education deleteEducation={this.deleteEducation} key={3} />
+            <Education deleteEducation={this.deleteEducation} index={i} />
           </Card.Body>
         </Card>
       );
