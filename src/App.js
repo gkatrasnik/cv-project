@@ -16,6 +16,7 @@ class App extends Component {
       expirienceList: [],
     };
 
+    this.addEducation = this.addEducation.bind(this);
     this.addToEducationNumber = this.addToEducationNumber.bind(this);
     this.deleteEducation = this.deleteEducation.bind(this);
   }
@@ -33,7 +34,7 @@ class App extends Component {
     });
   };
 
-  //it gets right index, but filter doesnt work. educationList is empty. on submit form make object, pass it to education component and add to education list in app
+  //it gets right index, but deleting doesnt work.
 
   deleteEducation = (i) => {
     this.setState((state) => {
@@ -51,12 +52,17 @@ class App extends Component {
   };
 
   render() {
+    console.log(this.state.educationList);
     const educationList = [];
     for (let i = 0; i < this.state.numberOfEducation; i++) {
       educationList.push(
         <Card key={i}>
           <Card.Body>
-            <Education deleteEducation={this.deleteEducation} index={i} />
+            <Education
+              deleteEducation={this.deleteEducation}
+              addEducation={this.addEducation}
+              index={i}
+            />
           </Card.Body>
         </Card>
       );

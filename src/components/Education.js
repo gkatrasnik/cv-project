@@ -24,6 +24,12 @@ export default class Education extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.toggleShowForm();
+    let item = {
+      schoolName: this.state.schoolName,
+      titleOfStudy: this.state.titleOfStudy,
+      dateOfStudy: this.state.dateOfStudy,
+    };
+    this.props.addEducation(item);
   };
 
   toggleShowForm = () => {
@@ -31,7 +37,6 @@ export default class Education extends Component {
     this.setState({ showForm: !showForm });
   };
   render() {
-    console.log(this.state);
     const { showForm, schoolName, titleOfStudy, dateOfStudy } = this.state;
     const { index, deleteEducation } = this.props;
 
