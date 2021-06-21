@@ -45,11 +45,10 @@ class App extends Component {
   //deleting works, but always deletes last index
 
   deleteEducation = (i) => {
+    const educationList = this.state.educationList;
+    educationList.splice(i, 1);
     this.setState((state) => {
-      const educationList = state.educationList.filter((task, j) => i !== j);
-      return {
-        educationList,
-      };
+      return { educationList };
     });
   };
 
