@@ -29,13 +29,15 @@ export default class Education extends Component {
       titleOfStudy: this.state.titleOfStudy,
       dateOfStudy: this.state.dateOfStudy,
     };
-    this.props.addEducation(item);
+    let index = this.props.index;
+    this.props.addEducation(item, index);
   };
 
   toggleShowForm = () => {
     const { showForm } = this.state;
     this.setState({ showForm: !showForm });
   };
+
   render() {
     const { showForm, schoolName, titleOfStudy, dateOfStudy } = this.state;
     const { index, deleteEducation } = this.props;
@@ -47,6 +49,8 @@ export default class Education extends Component {
         dateOfStudy={dateOfStudy}
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
+        toggleShowForm={this.toggleShowForm}
+        itemIndex={index}
       />
     ) : (
       <EducationView

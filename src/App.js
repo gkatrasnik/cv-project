@@ -17,24 +17,32 @@ class App extends Component {
     };
 
     this.addEducation = this.addEducation.bind(this);
-    this.addToEducationNumber = this.addToEducationNumber.bind(this);
+    this.addEmptyEducation = this.addEmptyEducation.bind(this);
     this.deleteEducation = this.deleteEducation.bind(this);
   }
 
-  addEducation = (item) => {
+  addEducation = (item, index) => {
+    this.setState((state) => {
+      const educationList = this.state.educationList;
+      educationList[index] = item;
+      return { educationList };
+    });
+    console.log("item" + item, " ---- index" + index);
+    console.log("state after submiting", this.state.educationList);
+  };
+
+  addEmptyEducation = () => {
+    let emptyItem = {
+      schoolName: "",
+      titleOfStudy: "",
+      dateOfStudy: "",
+    };
     this.setState({
-      educationList: this.state.educationList.concat(item),
+      educationList: this.state.educationList.concat(emptyItem),
     });
   };
 
-  addToEducationNumber = () => {
-    let i = this.state.numberOfEducation;
-    this.setState({
-      numberOfEducation: i + 1,
-    });
-  };
-
-  //it gets right index, but deleting doesnt work.
+  //deleting works, but always deletes last index
 
   deleteEducation = (i) => {
     this.setState((state) => {
@@ -52,9 +60,8 @@ class App extends Component {
   };
 
   render() {
-    console.log(this.state.educationList);
     const educationList = [];
-    for (let i = 0; i < this.state.numberOfEducation; i++) {
+    for (let i = 0; i < this.state.educationList.length; i++) {
       educationList.push(
         <Card key={i}>
           <Card.Body>
@@ -83,7 +90,7 @@ class App extends Component {
           <Col md={{ span: 8, offset: 2 }}>
             <h2>Education</h2>
             {educationList}
-            <Button onClick={this.addToEducationNumber} className="float-right">
+            <Button onClick={this.addEmptyEducation} className="float-right">
               Add
             </Button>
           </Col>
