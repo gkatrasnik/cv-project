@@ -22,7 +22,7 @@ class App extends Component {
     this.deleteEducation = this.deleteEducation.bind(this);
   }
 
-  //edits empty education--doesnt work right
+  //edits empty education
   addEducation = (item, index) => {
     this.setState((state) => {
       const educationList = this.state.educationList;
@@ -46,16 +46,12 @@ class App extends Component {
     });
   };
 
-  //deleting works in educationList array, but doesnt render components right
-
   deleteEducation = (i) => {
     const newEducationList = this.state.educationList;
-    // if (i !== -1) {
     newEducationList.splice(i, 1);
     this.setState({ educationList: newEducationList });
 
     console.log(this.state.educationList);
-    // }
   };
 
   addExpirience = (item) => {
@@ -67,7 +63,7 @@ class App extends Component {
   render() {
     const renderedEducationList = this.state.educationList.map(
       (item, index) => (
-        <Card>
+        <Card key={index}>
           <Card.Body>
             <Education
               deleteEducation={this.deleteEducation}

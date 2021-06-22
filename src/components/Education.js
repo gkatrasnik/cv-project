@@ -19,13 +19,24 @@ export default class Education extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  //recives props after initial state setting and updates state
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    this.setState({
+      schoolName: nextProps.item.schoolName,
+      titleOfStudy: nextProps.item.titleOfStudy,
+      dateOfStudy: nextProps.item.dateOfStudy,
+      id: nextProps.item.id,
+      index: nextProps.index,
+    });
+  }
+
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
     });
   };
 
-  //edits empty object in app/state/educationList
+  //calls addEducation in app.js, passes item and index to edit educationList
   handleSubmit = (e, index) => {
     e.preventDefault();
     this.toggleShowForm();
@@ -33,6 +44,7 @@ export default class Education extends Component {
       schoolName: this.state.schoolName,
       titleOfStudy: this.state.titleOfStudy,
       dateOfStudy: this.state.dateOfStudy,
+      id: this.state.id,
     };
     this.props.addEducation(item, index);
   };
