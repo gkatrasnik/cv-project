@@ -4,6 +4,7 @@ import Education from "./components/Education";
 import Expirience from "./components/Expirience";
 import { Container, Row, Col, Navbar, Card, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import uniqid from "uniqid";
 
 class App extends Component {
   constructor() {
@@ -21,35 +22,40 @@ class App extends Component {
     this.deleteEducation = this.deleteEducation.bind(this);
   }
 
+  //edits empty education--doesnt work right
   addEducation = (item, index) => {
     this.setState((state) => {
       const educationList = this.state.educationList;
       educationList[index] = item;
       return { educationList };
     });
-    console.log("item" + item, " ---- index" + index);
+
     console.log("state after submiting", this.state.educationList);
   };
 
+  //adds empty object to educationList, with uniqid
   addEmptyEducation = () => {
     let emptyItem = {
       schoolName: "",
       titleOfStudy: "",
       dateOfStudy: "",
+      id: uniqid(),
     };
     this.setState({
       educationList: this.state.educationList.concat(emptyItem),
     });
   };
 
-  //deleting works, but always deletes last index
+  //deleting works in educationList array, but doesnt render components right
 
   deleteEducation = (i) => {
-    const educationList = this.state.educationList;
-    educationList.splice(i, 1);
-    this.setState((state) => {
-      return { educationList };
-    });
+    const newEducationList = this.state.educationList;
+    // if (i !== -1) {
+    newEducationList.splice(i, 1);
+    this.setState({ educationList: newEducationList });
+
+    console.log(this.state.educationList);
+    // }
   };
 
   addExpirience = (item) => {
@@ -59,20 +65,21 @@ class App extends Component {
   };
 
   render() {
-    const educationList = [];
-    for (let i = 0; i < this.state.educationList.length; i++) {
-      educationList.push(
-        <Card key={i}>
+    const renderedEducationList = this.state.educationList.map(
+      (item, index) => (
+        <Card>
           <Card.Body>
             <Education
               deleteEducation={this.deleteEducation}
               addEducation={this.addEducation}
-              index={i}
+              item={item}
+              index={index}
             />
           </Card.Body>
         </Card>
-      );
-    }
+      )
+    );
+
     return (
       <Container>
         <Navbar className="justify-content-center">
@@ -88,7 +95,7 @@ class App extends Component {
         <Row>
           <Col md={{ span: 8, offset: 2 }}>
             <h2>Education</h2>
-            {educationList}
+            {renderedEducationList}
             <Button onClick={this.addEmptyEducation} className="float-right">
               Add
             </Button>

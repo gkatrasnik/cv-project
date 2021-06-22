@@ -1,14 +1,18 @@
+//to do: on render, set education state to app/educationList object values.
+
 import React, { Component } from "react";
 import EducationForm from "./EducationForm";
 import EducationView from "./EducationView";
 
 export default class Education extends Component {
-  constructor() {
+  constructor(props) {
     super();
     this.state = {
-      schoolName: "",
-      titleOfStudy: "",
-      dateOfStudy: "",
+      schoolName: props.item.schoolName,
+      titleOfStudy: props.item.titleOfStudy,
+      dateOfStudy: props.item.dateOfStudy,
+      id: props.item.id,
+      index: props.index,
       showForm: true,
     };
     this.handleChange = this.handleChange.bind(this);
@@ -21,7 +25,8 @@ export default class Education extends Component {
     });
   };
 
-  handleSubmit = (e) => {
+  //edits empty object in app/state/educationList
+  handleSubmit = (e, index) => {
     e.preventDefault();
     this.toggleShowForm();
     let item = {
@@ -29,7 +34,6 @@ export default class Education extends Component {
       titleOfStudy: this.state.titleOfStudy,
       dateOfStudy: this.state.dateOfStudy,
     };
-    let index = this.props.index;
     this.props.addEducation(item, index);
   };
 
@@ -39,8 +43,9 @@ export default class Education extends Component {
   };
 
   render() {
-    const { showForm, schoolName, titleOfStudy, dateOfStudy } = this.state;
-    const { index, deleteEducation } = this.props;
+    const { showForm, schoolName, titleOfStudy, dateOfStudy, index } =
+      this.state;
+    const { deleteEducation } = this.props;
 
     return showForm ? (
       <EducationForm
@@ -50,7 +55,7 @@ export default class Education extends Component {
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
         toggleShowForm={this.toggleShowForm}
-        itemIndex={index}
+        index={index}
       />
     ) : (
       <EducationView
@@ -59,7 +64,7 @@ export default class Education extends Component {
         dateOfStudy={dateOfStudy}
         toggleShowForm={this.toggleShowForm}
         deleteEducationView={deleteEducation}
-        itemIndex={index}
+        index={index}
       />
     );
   }

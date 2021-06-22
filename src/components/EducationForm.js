@@ -9,9 +9,14 @@ export default class EducationForm extends Component {
       dateOfStudy,
       handleSubmit,
       handleChange,
+      index,
     } = this.props;
     return (
-      <Form onSubmit={handleSubmit}>
+      <Form
+        onSubmit={(e) => {
+          handleSubmit(e, index);
+        }}
+      >
         <Form.Group controlId="school">
           <Form.Label>School name</Form.Label>
           <Form.Control

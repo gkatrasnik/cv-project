@@ -9,7 +9,7 @@ export default class EducationView extends Component {
       dateOfStudy,
       toggleShowForm,
       deleteEducationView,
-      itemIndex,
+      index,
     } = this.props;
     return (
       <Card>
@@ -30,7 +30,7 @@ export default class EducationView extends Component {
             </Button>
             <Button
               onClick={function () {
-                deleteEducationView(itemIndex);
+                deleteEducationView(index);
               }}
               type="submit"
               className="float-right"
