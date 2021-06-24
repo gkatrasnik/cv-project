@@ -30,8 +30,6 @@ class App extends Component {
       educationList[index] = item;
       return { educationList };
     });
-
-    console.log("state after submiting", this.state.educationList);
   };
 
   //adds empty object to educationList, with uniqid
