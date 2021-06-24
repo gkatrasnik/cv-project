@@ -5,7 +5,7 @@ export default class PersonalView extends Component {
   render() {
     const { fullName, address, phone, email, toggleShowForm } = this.props;
     return (
-      <Card>
+      <Card className="mb-3">
         <Card.Body>
           <h4>Full name</h4>
           <p>{fullName}</p>
@@ -19,7 +19,7 @@ export default class PersonalView extends Component {
             <Button
               onClick={toggleShowForm}
               type="submit"
-              className="float-right"
+              className="float-right m-2"
             >
               Edit
             </Button>

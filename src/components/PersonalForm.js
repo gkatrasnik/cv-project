@@ -49,7 +49,7 @@ export default class PersonalForm extends Component {
             placeholder="Enter your email"
           ></Form.Control>
         </Form.Group>
-        <Button type="submit" className="float-right">
+        <Button type="submit" className="float-right m-2">
           Submit
         </Button>
       </Form>

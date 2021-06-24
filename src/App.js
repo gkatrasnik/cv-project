@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Personal from "./components/Personal";
 import Education from "./components/Education";
 import Expirience from "./components/Expirience";
-import { Container, Row, Col, Navbar, Card, Button } from "react-bootstrap";
+import { Container, Row, Col, Navbar, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import uniqid from "uniqid";
 
@@ -94,32 +94,26 @@ class App extends Component {
     //Education section
     const renderedEducationList = this.state.educationList.map(
       (item, index) => (
-        <Card key={index}>
-          <Card.Body>
-            <Education
-              deleteEducation={this.deleteEducation}
-              addEducation={this.addEducation}
-              item={item}
-              index={index}
-            />
-          </Card.Body>
-        </Card>
+        <Education
+          key={index}
+          deleteEducation={this.deleteEducation}
+          addEducation={this.addEducation}
+          item={item}
+          index={index}
+        />
       )
     );
 
     //Expirience section
     const renderedExpirienceList = this.state.expirienceList.map(
       (item, index) => (
-        <Card key={index}>
-          <Card.Body>
-            <Expirience
-              deleteExpirience={this.deleteExpirience}
-              addExpirience={this.addExpirience}
-              item={item}
-              index={index}
-            />
-          </Card.Body>
-        </Card>
+        <Expirience
+          key={index}
+          deleteExpirience={this.deleteExpirience}
+          addExpirience={this.addExpirience}
+          item={item}
+          index={index}
+        />
       )
     );
 
@@ -139,7 +133,10 @@ class App extends Component {
           <Col md={{ span: 8, offset: 2 }}>
             <h2>Education</h2>
             {renderedEducationList}
-            <Button onClick={this.addEmptyEducation} className="float-right">
+            <Button
+              onClick={this.addEmptyEducation}
+              className="float-right m-4"
+            >
               Add
             </Button>
           </Col>
@@ -149,7 +146,10 @@ class App extends Component {
           <Col md={{ span: 8, offset: 2 }}>
             <h2>Practical Expirience</h2>
             {renderedExpirienceList}
-            <Button onClick={this.addEmptyExpirience} className="float-right">
+            <Button
+              onClick={this.addEmptyExpirience}
+              className="float-right m-4"
+            >
               Add
             </Button>
           </Col>

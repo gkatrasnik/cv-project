@@ -27,7 +27,7 @@ export default class ExpirienceView extends Component {
             <Button
               onClick={toggleShowForm}
               type="submit"
-              className="float-right"
+              className="float-right m-2"
             >
               Edit
             </Button>
@@ -36,7 +36,7 @@ export default class ExpirienceView extends Component {
                 deleteExpirienceView(index);
               }}
               type="submit"
-              className="float-right"
+              className="float-right m-2"
             >
               Delete
             </Button>
