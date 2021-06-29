@@ -19,7 +19,7 @@ export default class ExpirienceView extends Component {
           <p>{companyName}</p>
           <h4>Position Title</h4>
           <p>{positionTitle}</p>
-          <h4>Main Taks at Work</h4>
+          <h4>Main Tasks at Work</h4>
           <p>{mainTasks}</p>
           <h4>Date of Work</h4>
           <p>{dateOfWork}</p>
