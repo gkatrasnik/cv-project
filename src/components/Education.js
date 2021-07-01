@@ -6,7 +6,7 @@ import EducationView from "./EducationView";
 
 export default class Education extends Component {
   constructor(props) {
-    super();
+    super(props);
     this.state = {
       schoolName: props.item.schoolName,
       titleOfStudy: props.item.titleOfStudy,
@@ -20,14 +20,16 @@ export default class Education extends Component {
   }
 
   //recives props after initial state setting and updates state
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    this.setState({
-      schoolName: nextProps.item.schoolName,
-      titleOfStudy: nextProps.item.titleOfStudy,
-      dateOfStudy: nextProps.item.dateOfStudy,
-      id: nextProps.item.id,
-      index: nextProps.index,
-    });
+  componentDidUpdate(prevProps) {
+    if (this.props.item !== prevProps.item) {
+      this.setState({
+        schoolName: this.props.item.schoolName,
+        titleOfStudy: this.props.item.titleOfStudy,
+        dateOfStudy: this.props.item.dateOfStudy,
+        id: this.props.item.id,
+        index: this.props.index,
+      });
+    }
   }
 
   handleChange = (e) => {
@@ -55,15 +57,12 @@ export default class Education extends Component {
   };
 
   render() {
-    const { showForm, schoolName, titleOfStudy, dateOfStudy, index } =
-      this.state;
-    const { deleteEducation } = this.props;
+    const { showForm } = this.state;
+    const { deleteEducation, item, index } = this.props;
 
     return showForm ? (
       <EducationForm
-        schoolName={schoolName}
-        titleOfStudy={titleOfStudy}
-        dateOfStudy={dateOfStudy}
+        item={item}
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
         toggleShowForm={this.toggleShowForm}
@@ -71,9 +70,7 @@ export default class Education extends Component {
       />
     ) : (
       <EducationView
-        schoolName={schoolName}
-        titleOfStudy={titleOfStudy}
-        dateOfStudy={dateOfStudy}
+        item={item}
         toggleShowForm={this.toggleShowForm}
         deleteEducationView={deleteEducation}
         index={index}

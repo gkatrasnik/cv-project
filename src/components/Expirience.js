@@ -4,7 +4,7 @@ import ExpirienceView from "./ExpirienceView";
 
 export default class Expirience extends Component {
   constructor(props) {
-    super();
+    super(props);
     this.state = {
       companyName: props.item.companyName,
       positionTitle: props.item.positionTitle,
@@ -19,14 +19,18 @@ export default class Expirience extends Component {
   }
 
   //recives props after initial state setting and updates state
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    this.setState({
-      companyName: nextProps.item.companyName,
-      positionTitle: nextProps.item.positionTitle,
-      mainTasks: nextProps.item.mainTasks,
-      dateOfWork: nextProps.item.dateOfWork,
-      index: nextProps.index,
-    });
+
+  componentDidUpdate(prevProps) {
+    if (this.props.item !== prevProps.item) {
+      this.setState({
+        companyName: this.props.item.companyName,
+        positionTitle: this.props.item.positionTitle,
+        mainTasks: this.props.item.mainTasks,
+        dateOfWork: this.props.item.dateOfWork,
+        id: this.props.item.id,
+        index: this.props.index,
+      });
+    }
   }
 
   handleChange = (e) => {
@@ -55,22 +59,12 @@ export default class Expirience extends Component {
   };
 
   render() {
-    const {
-      showForm,
-      companyName,
-      positionTitle,
-      mainTasks,
-      dateOfWork,
-      index,
-    } = this.state;
-    const { deleteExpirience } = this.props;
+    const { showForm, index } = this.state;
+    const { deleteExpirience, item } = this.props;
 
     return showForm ? (
       <ExpirienceForm
-        companyName={companyName}
-        positionTitle={positionTitle}
-        mainTasks={mainTasks}
-        dateOfWork={dateOfWork}
+        item={item}
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
         toggleShowForm={this.toggleShowForm}
@@ -78,10 +72,7 @@ export default class Expirience extends Component {
       />
     ) : (
       <ExpirienceView
-        companyName={companyName}
-        positionTitle={positionTitle}
-        mainTasks={mainTasks}
-        dateOfWork={dateOfWork}
+        item={item}
         toggleShowForm={this.toggleShowForm}
         deleteExpirienceView={deleteExpirience}
         index={index}

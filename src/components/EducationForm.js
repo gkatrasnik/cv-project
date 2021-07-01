@@ -3,14 +3,7 @@ import { Form, Button } from "react-bootstrap";
 
 export default class EducationForm extends Component {
   render() {
-    const {
-      schoolName,
-      titleOfStudy,
-      dateOfStudy,
-      handleSubmit,
-      handleChange,
-      index,
-    } = this.props;
+    const { item, handleSubmit, handleChange, index } = this.props;
     return (
       <Form
         onSubmit={(e) => {
@@ -20,7 +13,7 @@ export default class EducationForm extends Component {
         <Form.Group controlId="school">
           <Form.Label>School name</Form.Label>
           <Form.Control
-            defaultValue={schoolName}
+            defaultValue={item.schoolName}
             onChange={handleChange}
             name="schoolName"
             type="text"
@@ -31,7 +24,7 @@ export default class EducationForm extends Component {
         <Form.Group controlId="titleOfStudy">
           <Form.Label>Title of study</Form.Label>
           <Form.Control
-            defaultValue={titleOfStudy}
+            defaultValue={item.titleOfStudy}
             onChange={handleChange}
             name="titleOfStudy"
             type="text"
@@ -42,7 +35,7 @@ export default class EducationForm extends Component {
         <Form.Group controlId="dateOfStudy">
           <Form.Label>Date of study</Form.Label>
           <Form.Control
-            defaultValue={dateOfStudy}
+            defaultValue={item.dateOfStudy}
             onChange={handleChange}
             name="dateOfStudy"
             type="date"

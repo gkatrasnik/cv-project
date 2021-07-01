@@ -3,23 +3,16 @@ import { Card, Button } from "react-bootstrap";
 
 export default class EducationView extends Component {
   render() {
-    const {
-      schoolName,
-      titleOfStudy,
-      dateOfStudy,
-      toggleShowForm,
-      deleteEducationView,
-      index,
-    } = this.props;
+    const { item, toggleShowForm, deleteEducationView, index } = this.props;
     return (
       <Card>
         <Card.Body>
           <h4>School name</h4>
-          <p>{schoolName}</p>
+          <p>{item.schoolName}</p>
           <h4>Title of study</h4>
-          <p>{titleOfStudy}</p>
+          <p>{item.titleOfStudy}</p>
           <h4>Date of study</h4>
-          <p>{dateOfStudy}</p>
+          <p>{item.dateOfStudy}</p>
           <div>
             <Button
               onClick={toggleShowForm}

@@ -3,26 +3,19 @@ import { Card, Button } from "react-bootstrap";
 
 export default class ExpirienceView extends Component {
   render() {
-    const {
-      companyName,
-      positionTitle,
-      mainTasks,
-      dateOfWork,
-      toggleShowForm,
-      deleteExpirienceView,
-      index,
-    } = this.props;
+    const { item, toggleShowForm, deleteExpirienceView, index } = this.props;
+
     return (
       <Card>
         <Card.Body>
           <h4>Name of Company</h4>
-          <p>{companyName}</p>
+          <p>{item.companyName}</p>
           <h4>Position Title</h4>
-          <p>{positionTitle}</p>
+          <p>{item.positionTitle}</p>
           <h4>Main Tasks at Work</h4>
-          <p>{mainTasks}</p>
+          <p>{item.mainTasks}</p>
           <h4>Date of Work</h4>
-          <p>{dateOfWork}</p>
+          <p>{item.dateOfWork}</p>
           <div>
             <Button
               onClick={toggleShowForm}

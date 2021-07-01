@@ -3,15 +3,7 @@ import { Form, Button } from "react-bootstrap";
 
 export default class ExpirienceForm extends Component {
   render() {
-    const {
-      companyName,
-      positionTitle,
-      mainTasks,
-      dateOfWork,
-      handleSubmit,
-      handleChange,
-      index,
-    } = this.props;
+    const { item, handleSubmit, handleChange, index } = this.props;
     return (
       <Form
         onSubmit={(e) => {
@@ -21,7 +13,7 @@ export default class ExpirienceForm extends Component {
         <Form.Group controlId="company">
           <Form.Label>Company name</Form.Label>
           <Form.Control
-            defaultValue={companyName}
+            defaultValue={item.companyName}
             onChange={handleChange}
             name="companyName"
             type="text"
@@ -32,7 +24,7 @@ export default class ExpirienceForm extends Component {
         <Form.Group controlId="positionTitle">
           <Form.Label>Position Title</Form.Label>
           <Form.Control
-            defaultValue={positionTitle}
+            defaultValue={item.positionTitle}
             onChange={handleChange}
             name="positionTitle"
             type="text"
@@ -43,7 +35,7 @@ export default class ExpirienceForm extends Component {
         <Form.Group controlId="mainTasks">
           <Form.Label>Main Tasks</Form.Label>
           <Form.Control
-            defaultValue={mainTasks}
+            defaultValue={item.mainTasks}
             onChange={handleChange}
             name="mainTasks"
             type="text"
@@ -54,7 +46,7 @@ export default class ExpirienceForm extends Component {
         <Form.Group controlId="dateOfWork">
           <Form.Label>Date of Work</Form.Label>
           <Form.Control
-            defaultValue={dateOfWork}
+            defaultValue={item.dateOfWork}
             onChange={handleChange}
             name="dateOfWork"
             type="date"

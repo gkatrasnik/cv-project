@@ -14,11 +14,6 @@ class App extends Component {
       educationList: [],
       expirienceList: [],
     };
-
-    this.addEducation = this.addEducation.bind(this);
-    this.addEmptyEducation = this.addEmptyEducation.bind(this);
-    this.deleteEducation = this.deleteEducation.bind(this);
-    this.deleteExpirience = this.deleteExpirience.bind(this);
   }
 
   //education section------------------------------------
@@ -49,8 +44,6 @@ class App extends Component {
     const newEducationList = this.state.educationList;
     newEducationList.splice(i, 1);
     this.setState({ educationList: newEducationList });
-
-    console.log(this.state.educationList);
   };
 
   //expirience section----------------------------------
@@ -62,8 +55,6 @@ class App extends Component {
       expirienceList[index] = item;
       return { expirienceList };
     });
-
-    console.log("expirience state after submiting", this.state.expirienceList);
   };
 
   //adds empty object to expirienceList, with uniqid
@@ -84,8 +75,6 @@ class App extends Component {
     const newExpirienceList = this.state.expirienceList;
     newExpirienceList.splice(i, 1);
     this.setState({ expirienceList: newExpirienceList });
-
-    console.log(this.state.expirienceList);
   };
 
   render() {
